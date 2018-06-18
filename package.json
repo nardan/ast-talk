@@ -1,0 +1,27 @@
+{
+  "name": "ast-talk",
+  "version": "0.1.0",
+  "description": "",
+  "main": "first.js",
+  "scripts": {
+    "lint": "eslint ./src/2-errors.js",
+    "build": "babel ./src/3-babel-plugins.js --out-dir dist",
+    "build:define": "cross-env USE_DEFINE=true babel ./src/3-babel-plugins.js --out-dir dist",
+    "build:full-define": "cross-env USE_FULL_DEFINE=true babel ./src/3-babel-plugins.js --out-dir dist"
+  },
+  "author": "Alastair Brown <Alastair.Brown@ao.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "babel-plugin-macros": "^2.2.2",
+    "babel-plugin-transform-define": "^1.3.0",
+    "codegen.macro": "^2.0.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-local-rules": "^0.1.0",
+    "minimist": "^1.2.0",
+    "preval.macro": "^1.0.2"
+  }
+}

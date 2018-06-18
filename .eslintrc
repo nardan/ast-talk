@@ -1,0 +1,15 @@
+{
+	"root": true,
+	"plugins": ["local-rules"],
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"env": {
+		"node": true
+	},
+	"rules": {
+		"local-rules/no-cond-asign": "error"
+		// , "local-rules/no-unguarded-console": "error"
+	}
+}
