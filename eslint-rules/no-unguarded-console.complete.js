@@ -80,7 +80,7 @@ module.exports = {
 
 			return (
 				isSuitibleGuard(parent) ||
-				isGuarded(parent.parent)
+				isGuarded(parent)
 			);
 		}
 

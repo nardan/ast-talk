@@ -49,38 +49,27 @@ module.exports = {
 		}
 
 		function isSuitibleGuard(node) {
-			return false;
-			/*
-			{
-				"type": "IfStatement",
-				"test": {
-					"type": "BinaryExpression",
-					"left": {
-						"type": "MemberExpression",
-						"object": {
-							"type": "MemberExpression",
-							"object": {
-								"type": "Identifier",
-								"name": "process"
-							},
-							"property": {
-								"type": "Identifier",
-								"name": "env"
-							}
-						},
-						"property": {
-							"type": "Identifier",
-							"name": "NODE_ENV"
-						}
-					},
-					"operator": "==",
-					"right": {
-						"type": "Literal",
-						"value": "development"
-					}
-				}
+			if (!node || node.type !== 'IfStatement') {
+				return false;
 			}
-			*/
+
+			let test = node.test;
+			if (!test || test.type !== 'BinaryExpression') {
+				return false;
+			}
+
+			let left = test.left;
+			let right = test.right;
+
+			return (
+				isMemberExpression(left) &&
+				isMemberExpression(left.object) &&
+				isIdentifierWithName(left.object.object, 'process') &&
+				isIdentifierWithName(left.object.property, 'env') &&
+				isIdentifierWithName(left.property, 'NODE_ENV') &&
+				(test.operator === '==' || test.operator === '===') &&
+				isLiteralWithValue(right, 'development')
+			);
 		}
 
 		function isGuarded(node) {
@@ -91,7 +80,7 @@ module.exports = {
 
 			return (
 				isSuitibleGuard(parent) ||
-				isGuarded(parent.parent)
+				isGuarded(parent)
 			);
 		}
 
